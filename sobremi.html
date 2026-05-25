@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Me</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles/illustration.css">
+    <link rel="stylesheet" href="styles/about.css">
+</head>
+<body>
+
+    <nav class="site-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="illustration.html">Illustration</a></li>
+            <li><a href="multimedia.html">Photography</a></li>
+            <li><a href="sobremi.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div id="smooth-wrapper" style="padding-top: 0;">
+        <div id="smooth-content">
+
+            <section class="about-hero">
+                <h1 class="about-title">Meet the artist</h1>
+                <p class="about-subtitle">Illustrator · Photographer · Designer</p>
+            </section>
+
+            <section class="about-content">
+                <div class="container-about">
+                    <div class="about-grid">
+                        <div class="about-text">
+                            <h3 class="about-name">Ari Alfallo</h3>
+                            <p class="about-description">
+                                Hello! <br>
+I'm Ari, an aspiring designer specialized in illustration, currently studying Diseño y
+Comunicación Visual at FES Cuautitlán, UNAM. My work is shaped by a deep fascination
+with ornate detail, strong character design, and intentional aesthetics, heavily influenced by
+the expressive white pupils and bold figure work of Kohei Horikoshi, the refined facial
+structure and elegance of Yana Toboso, and the intricate linework and detail-driven
+compositions of Tetsuya Nomura and Alphonse Mucha.
+Technical ability is at the core of what I do. I have a trained eye for observation and color,
+and a strong capacity for replication and detail. Beyond illustration, I'm currently expanding
+my practice into 3D modeling and animation, and I adapt quickly to new tools and software,
+always looking for ways to grow and push my work further.
+                            </p>
+                            <p class="about-description">
+                               ¡Hola! <br>
+Soy Ari, diseñadora en formación especializada en ilustración, actualmente estudiando
+Diseño y Comunicación Visual en la FES Cuautitlán, UNAM. Mi trabajo está marcado por
+una profunda fascinación con el detalle ornamental, el diseño de personajes y una estética
+intencional, fuertemente influenciada por las expresivas pupilas blancas y el trabajo de
+figura de Kohei Horikoshi, la elegancia y estructura facial refinada de Yana Toboso, y las
+composiciones de trazo intrincado y detalle minucioso de Tetsuya Nomura y Alphonse
+Mucha.
+La habilidad técnica es el núcleo de lo que hago. Tengo un ojo entrenado para la
+observación y el color, y una gran capacidad para la replicación y el detalle. Más allá de la
+ilustración, actualmente estoy expandiendo mi práctica hacia el modelado 3D y la
+animación, y me adapto rápidamente a nuevas herramientas y software, siempre buscando
+crecer y llevar mi trabajo más lejos.
+                            </p>
+                            
+                            <div class="about-social">
+                                <a href="https://www.instagram.com/umjammerari?igsh=MTg5c25qcXB5bjdlMg==" target="_blank" class="social-icon"><i class="fab fa-instagram"></i> Instagram</a>
+                                <a href="https://x.com/grxveiid" target="_blank" class="social-icon"><i class="fab fa-twitter"></i> Twitter</a>
+                            </div>
+                        </div>
+                        <div class="about-image">
+                            <img src="img/about.jpg" alt="Ari Alfallo">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- form -->
+            <section class="contact-section">
+                <div class="container-contact">
+                    <h2 class="contact-title">Contact</h2>
+                    <form id="contactForm" class="contact-form" action="https://formspree.io/f/xdajllgb" method="POST">
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required>
+                <label for="name"><i class="fas fa-user"></i> Name</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="email" name="email" placeholder="tu@email.com" required>
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
+                <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-floating">
+                <textarea class="form-control" id="message" name="message" placeholder="Tu mensaje" style="height: 150px" required></textarea>
+                <label for="message"><i class="fas fa-pencil-alt"></i> Message</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i> Send
+            </button>
+        </div>
+    </div>
+</form>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        window.scrollTo(0, 0);
+
+        // Animaciones de entrada
+        gsap.from('.about-title', { opacity: 0, y: 60, duration: 1.1, ease: 'power3.out' });
+        gsap.from('.about-subtitle', { opacity: 0, y: 60, duration: 1.1, ease: 'power3.out', delay: 0.3 });
+        gsap.from('.about-text', { opacity: 0, x: -40, duration: 0.9, delay: 0.5, ease: 'power3.out' });
+        gsap.from('.about-image', { opacity: 0, x: 40, duration: 0.9, delay: 0.6, ease: 'power3.out' });
+        gsap.from('.about-name', { opacity: 0, y: 30, duration: 0.7, delay: 0.7, ease: 'power3.out' });
+        gsap.from('.about-description', { 
+            opacity: 0, 
+            y: 20, 
+            duration: 0.6, 
+            stagger: 0.15,
+            delay: 0.8,
+            ease: 'power3.out' 
+        });
+        gsap.from('.about-social', { opacity: 0, y: 30, duration: 0.7, delay: 1.1, ease: 'power3.out' });
+        gsap.from('.contact-section', { opacity: 0, y: 50, duration: 0.9, delay: 1.3, ease: 'power3.out' });
+
+        // navbar
+        let lastScrollY = window.scrollY;
+        const navbar = document.querySelector('.site-nav');
+        let ticking = false;
+
+        if (navbar) {
+            gsap.set(navbar, { y: 0 });
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const currentScrollY = window.scrollY;
+                        const delta = currentScrollY - lastScrollY;
+                        if (delta > 10 && currentScrollY > 80) {
+                            gsap.to(navbar, { y: -navbar.offsetHeight, duration: 0.3, overwrite: true, ease: "power2.out" });
+                        } else if (delta < -10) {
+                            gsap.to(navbar, { y: 0, duration: 0.4, overwrite: true, ease: "power2.out" });
+                        }
+                        lastScrollY = currentScrollY;
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        }
+
+        window.addEventListener('load', () => ScrollTrigger.refresh());
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            if (resizeTimer) clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
+        });
+    </script>
+
+</body>
+</html>
+

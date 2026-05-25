@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Illustration</title>
+  <link rel="stylesheet" href="styles/illustration.css" />
+  <style>
+    .horiz-gallery-strip { gap: 0px; }
+  </style>
+</head>
+<body>
+
+  <div id="smooth-wrapper" style="padding-top: 0;">
+    <div id="smooth-content">
+
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="illustration.html">Illustration</a></li>
+          <li><a href="multimedia.html">Photography</a></li>
+          <li><a href="sobremi.html">About</a></li>
+        </ul>
+      </nav>
+
+      <section class="panel plain">
+        <h2 class="ilu">Illustration</h2>
+        <h4 class="port">Digital and traditional</h4>
+        <h2 class="ilu" style="margin-top: 0.5rem;">Digital</h2>
+      </section>
+
+      
+      <div class="batch-grid" id="batchGrid1">
+        <div class="batch-item"><img src="img/IMG_2369.PNG" alt=""></div>
+        <div class="batch-item"><img src="img/IMG_2381.PNG" alt=""></div>
+        <div class="batch-item"><img src="img/IMG_2382.PNG" alt=""></div>
+        <div class="batch-item"><img src="img/IMG_2373.PNG" alt=""></div>
+        <div class="batch-item"><img src="img/IMG_2374.PNG" alt=""></div>
+        <div class="batch-item"><img src="img/IMG_2371.PNG" alt=""></div>
+        <div class="batch-item"><img src="img/IMG_2372.PNG" alt=""></div>
+        <div class="batch-item"><img src="img/IMG_2378.PNG" alt=""></div>
+      </div>
+
+     <section class="panel plain" style="min-height: auto; padding: 1rem 2rem;">
+    <h2 class="ilu">Traditional and sketchbook</h2>
+</section>
+
+      <div class="batch-grid" id="batchGrid2">
+        <div class="batch-item"><img src="img/sk7.jpg" alt=""></div>
+        <div class="batch-item"><img src="img/sk6.jpg" alt=""></div>
+        <div class="batch-item"><img src="img/sk8.jpg" alt=""></div>
+        <div class="batch-item"><img src="img/sk4.jpg" alt=""></div>
+        <div class="batch-item"><img src="img/sk3.jpg" alt=""></div>
+        <div class="batch-item"><img src="img/sk2.jpg" alt=""></div>
+        <div class="batch-item"><img src="img/sk 1.jpg" alt=""></div>
+        <div class="batch-item"><img src="img/sk5.jpg" alt=""></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal FLIP -->
+  <div id="flipModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 9999; visibility: hidden; opacity: 0; transition: opacity 0.3s, visibility 0.3s;">
+    <img id="modalImage" src="" alt="" style="max-width: 90%; max-height: 90%; object-fit: contain; cursor: pointer;">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/Flip.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger, Flip);
+    window.scrollTo(0, 0);
+
+    gsap.from('.ilu', { opacity: 0, y: 60, duration: 1.1, ease: 'power3.out' });
+    gsap.from('.port', { opacity: 0, y: 60, duration: 1.1, ease: 'power3.out', delay: 0.5 });
+
+    // stagger scroll
+    gsap.set('.batch-item', { opacity: 0, scale: 0.8 });
+
+    ScrollTrigger.batch('.batch-item', {
+      interval: 0.1,
+      batchMax: 4,
+      onEnter: (batch) => {
+        gsap.to(batch, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          stagger: { amount: 0.3, from: "center" },
+          ease: "back.out(0.3)",
+          overwrite: true
+        });
+      },
+      onEnterBack: (batch) => {
+        gsap.to(batch, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          stagger: { amount: 0.2, from: "center" },
+          ease: "back.out(0.3)",
+          overwrite: true
+        });
+      },
+      start: "top 85%",
+      end: "bottom 15%"
+    });
+
+    // modalflipo 
+    const modal = document.getElementById('flipModal');
+    const modalImage = document.getElementById('modalImage');
+    let isFlipping = false;
+
+    function openImage(imgElement) {
+      if (isFlipping) return;
+      isFlipping = true;
+
+      modalImage.src = imgElement.src;
+      const state = Flip.getState(imgElement);
+      modal.style.visibility = 'visible';
+      modal.style.opacity = '1';
+
+      Flip.from(state, {
+        targets: imgElement,
+        duration: 0.6,
+        ease: "power2.inOut",
+        absolute: true,
+        onComplete: () => isFlipping = false,
+        onReverseComplete: () => isFlipping = false
+      });
+    }
+
+    function closeModal() {
+      if (isFlipping) return;
+      isFlipping = true;
+
+      const imgElement = document.querySelector(`img[src="${modalImage.src}"]`);
+      if (imgElement) {
+        const state = Flip.getState(modalImage);
+        modal.style.visibility = 'hidden';
+        modal.style.opacity = '0';
+
+        Flip.from(state, {
+          targets: modalImage,
+          duration: 0.6,
+          ease: "power2.inOut",
+          absolute: true,
+          onComplete: () => isFlipping = false
+        });
+      } else {
+        modal.style.visibility = 'hidden';
+        modal.style.opacity = '0';
+        isFlipping = false;
+      }
+    }
+
+    // abrir y cerrer click
+    document.querySelectorAll('.batch-item img').forEach(img => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openImage(img);
+      });
+    });
+
+    modalImage.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.visibility === 'visible') closeModal();
+    });
+
+    // navbar
+    let lastScrollY = window.scrollY;
+    const navbar = document.querySelector('.site-nav');
+    let ticking = false;
+
+    if (navbar) {
+      gsap.set(navbar, { y: 0 });
+      
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const currentScrollY = window.scrollY;
+            const delta = currentScrollY - lastScrollY;
+            
+            if (delta > 10 && currentScrollY > 50) {
+              gsap.to(navbar, { y: -navbar.offsetHeight, duration: 0.3, overwrite: true, ease: "power2.out" });
+            } else if (delta < -10) {
+              gsap.to(navbar, { y: 0, duration: 0.4, overwrite: true, ease: "power2.out" });
+            }
+            
+            lastScrollY = currentScrollY;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
+    });
+  </script>
+
+</body>
+</html>
