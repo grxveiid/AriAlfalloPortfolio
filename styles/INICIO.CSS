@@ -103,20 +103,18 @@ body {
 }
 
 .hero-image-placeholder {
-    flex: 0 0 520px;
+    flex: 0 0 auto;
     max-width: 520px;
-    width: 520px;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 .hero-image-placeholder img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: auto;
-    
-    
 }
 
 .icon-grid {
@@ -129,17 +127,23 @@ body {
     justify-content: center;
 }
 
-@media (max-width: 992px) {
-    .hero-layout {
-        flex-direction: column;
+@media (max-width: 768px) {
+    .hero-image-placeholder {
+        max-width: 280px;
+        width: auto;
     }
-
-    .hero-image-placeholder,
-    .icon-grid {
-        max-width: 100%;
+    
+    .hero-image-placeholder img {
+        width: auto;
+        height: auto;
     }
 }
 
+@media (max-width: 480px) {
+    .hero-image-placeholder {
+        max-width: 220px;
+    }
+}
 .badge-ghost {
     background: rgba(255, 255, 255, 0.08);
     color: #de114e;
